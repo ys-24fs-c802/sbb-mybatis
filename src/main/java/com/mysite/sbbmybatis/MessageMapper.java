@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MessageMapper {
 
 	Message getMessageById(Integer id);
+	void insertMessage(Message message);
 }

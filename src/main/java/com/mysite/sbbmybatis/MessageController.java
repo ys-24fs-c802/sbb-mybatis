@@ -13,7 +13,7 @@ public class MessageController {
 	
 	@GetMapping("/messages/{id}")
 	@ResponseBody
-	public String getMessage(@PathVariable("id") Integer id) {
+	public Message getMessage(@PathVariable("id") Integer id) {
 		// Integer id = 1;
 		return messageService.getMessage(id);
 	}

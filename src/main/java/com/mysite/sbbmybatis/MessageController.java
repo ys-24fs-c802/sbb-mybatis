@@ -36,8 +36,13 @@ public class MessageController {
 	}
 	
 	@GetMapping()
+	public String getMessages() {
+		return "messages";
+	}
+	
+	@GetMapping("/api")
 	@ResponseBody
-	public List<Message> getMessages() {
+	public List<Message> getMessagesLimit10() {
 		return messageService.getMessagesLimit10();
 	}
 }

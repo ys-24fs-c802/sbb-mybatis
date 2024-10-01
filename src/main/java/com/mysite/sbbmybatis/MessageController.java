@@ -35,7 +35,7 @@ public class MessageController {
 		messageService.createMessage(message);
 	}
 	
-	@GetMapping()
+	@GetMapping
 	public String getMessages() {
 		return "messages";
 	}

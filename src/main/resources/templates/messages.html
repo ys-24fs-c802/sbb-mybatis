@@ -2,20 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Messages</title>
 </head>
 <body>
+<!-- 비어 있는 messages div -->
 <h1>Message List</h1>
-<div id="loading" class="loading">Loading...</div>
-<div id="error">An error occurred while fetching data.</div>
-<div id="messageList"></div>
+<div id="loading_id" class="loading">Loading...</div>
+<div id="error_id" class="error">fetching 과정에서 오류가 발생했습니다.</div>
+<ul id="messageList_id"></ul>
 
+<!-- 자바스크립트로 fetch를 이용해 /messages/api 결과를 위 div에 담는다. -->
 <script th:inline="javascript">
-/*<![CDDATA[*/
 function fetchMessages() {
-	const messageList = document.getElementById('messageList');
-	const loading = document.getElementById('loading');
-	const error = document.getElementById('error');
+	const messageList = document.getElementById('messageList_id');
+	const loading = document.getElementById('loading_id');
+	const error = document.getElementById('error_id');
 	
 	loading.style.display = 'block';
 	error.style.display = 'none';
@@ -23,12 +24,14 @@ function fetchMessages() {
 	
 	fetch('/messages/api')
 		.then(response => {
+			// 응답 결과를 json으로 변환
 			if(!response.ok) {
 				throw new Error('Network response was not ok');
 			}
 			return response.json();
 		})
 		.then(messages => {
+			// 변환된 결과를 li요소로 만들어 화면에 추가
 			loading.style.display = 'none';
 			messages.forEach(msg => {
 				const li = document.createElement('li');
@@ -42,7 +45,9 @@ function fetchMessages() {
 			error.style.display = 'block';
 		})
 }
-/*]]>*/
+
+// 문서가 모두 로딩되면 fetchMessage() 함수를 실행
+document.addEventListener('DOMContentLoaded', fetchMessages);
 </script>
 </body>
 </html>

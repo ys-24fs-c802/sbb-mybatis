@@ -1,6 +1,3 @@
-// /js/utils.js
-const baseUrl = getBaseURL();
-
 document.getElementById('messageForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -8,7 +5,7 @@ document.getElementById('messageForm').addEventListener('submit', function(e) {
         message: document.getElementById('message_id').value,
     };
 
-    fetch(baseUrl + '/messages', {
+    fetch('/messages', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

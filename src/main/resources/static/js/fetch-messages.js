@@ -1,9 +1,6 @@
 /**
  * 
  */
-// /js/utils.js
-const baseUrl = getBaseUrl();
-
 function fetchMessages() {
 	const messageList = document.getElementById('messageList_id');
 	const loading = document.getElementById('loading_id');
@@ -13,7 +10,7 @@ function fetchMessages() {
 	error.style.display = 'none';
 	messageList.innerHTML = '';
 	
-	fetch(baseUrl + '/messages/api')
+	fetch('/messages/api')
 		.then(response => {
 			// 응답 결과를 json으로 변환
 			if(!response.ok) {

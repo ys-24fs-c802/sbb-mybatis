@@ -12,4 +12,12 @@
     <select id="getMessagesLimit10" resultType="com.mysite.sbbmybatis.Message">
         SELECT * FROM hello ORDER BY id DESC LIMIT 10;
     </select>
+    
+    <select id="getMessagesWithPaging" resultType="com.mysite.sbbmybatis.Message">
+        SELECT * FROM hello ORDER BY id DESC LIMIT #{size} OFFSET #{offset};
+    </select>
+    
+    <select id="countTotal" resultType="Integer">
+    	SELECT COUNT(*) FROM hello;
+    </select>
 </mapper>

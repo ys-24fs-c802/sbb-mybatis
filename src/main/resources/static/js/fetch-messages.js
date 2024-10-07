@@ -23,7 +23,9 @@ function fetchMessages() {
 			loading.style.display = 'none';
 			messages.forEach(msg => {
 				const li = document.createElement('li');
-				li.textContent = `${msg.message} (${msg.id})`;
+				// li.textContent = `<a href="/messages/${msg.id}">${msg.message} (${msg.id})</a>`;
+				// li.innerText
+				li.innerHTML = `<a href="/messages/${msg.id}">${msg.message} (${msg.id})</a>`;
 				messageList.appendChild(li);
 			})
 		})

@@ -11,6 +11,7 @@ public class UserService {
 		User user1 = new User();
 		user1.setId(1);
 		user1.setUsername(username);
+		user1.setPsw("1234");
 		LocalDateTime now = LocalDateTime.now();
 		user1.setCreatedAt(now);
 		user1.setUpdatedAt(now);

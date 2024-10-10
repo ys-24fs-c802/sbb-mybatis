@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<ul>
+	<li>
+		sn: <span th:text="${user.id}"></span>
+	</li>
+	<li>
+		username: <span th:text="${user.username}"></span>
+	</li>
+	<li>
+		create at: <span th:text="${user.createdAt}"></span>
+	</li>
+</ul>
+</body>
+</html>

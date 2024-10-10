@@ -1,5 +1,7 @@
 package com.mysite.sbbmybatis;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 //import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +29,8 @@ public class UserService {
 		return userMapper.getUserPswByUsername(username);
 	}
 
+	public void signup(User user) {
+		user.setPsw(BCrypt.hashpw(user.getPsw(), BCrypt.gensalt()));
+		userMapper.signup(user);
+	}
 }

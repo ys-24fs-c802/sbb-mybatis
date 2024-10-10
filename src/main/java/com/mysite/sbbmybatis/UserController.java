@@ -7,11 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
@@ -59,5 +61,28 @@ public class UserController {
 		}
 	}
 	
-
+	// 회원가입 페이지
+	@GetMapping("/user/signup")
+	public String signup(Model model) {
+		model.addAttribute("user", new User());
+		return "user/signup";
+	}
+	
+	// 회원가입 처리
+	@PostMapping("/user/signup")
+	public String signup2(@ModelAttribute("user") User user,
+			BindingResult result,
+			RedirectAttributes redirectAttributes) {
+		if (result.hasErrors()) { return "signup"; }
+			
+		try {
+			userService.signup(user);
+			redirectAttributes.addFlashAttribute("message", "회원가입을 축하합니다.");
+			return "redirect:/";
+		} catch (Exception e) {
+			result.rejectValue("username", "error.user", e.getMessage());
+			return "/user/signup";
+		}
+	}
+	
 }

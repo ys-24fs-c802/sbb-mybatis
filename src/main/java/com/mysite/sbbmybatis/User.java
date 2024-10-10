@@ -39,4 +39,15 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
+	// 생성자
+	public User() {}
+	public User(String username) {
+		super();
+		this.username = username;
+	}
+	public User(String username, String psw) {
+		super();
+		this.username = username;
+		this.psw = psw;
+	}
 }

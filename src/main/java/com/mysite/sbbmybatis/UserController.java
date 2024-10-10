@@ -2,6 +2,7 @@ package com.mysite.sbbmybatis;
 
 import java.util.Map;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	private boolean checkPsw(String psw1, String psw2) {
-		return psw1.equals(psw2);
+	private boolean checkPsw(String userPsw, String memberPsw) {
+		return BCrypt.checkpw(userPsw, memberPsw);
+//		return psw1.equals(psw2);
 	}
 	
 	// 로그인 페이지
@@ -35,7 +37,7 @@ public class UserController {
 	public ResponseEntity<?> login2(@RequestBody User user) {
 		User member = userService.getUserPsw(user.getUsername());
 		if (member != null) {
-			if (checkPsw(member.getPsw(), user.getPsw())) {
+			if (checkPsw(user.getPsw(), member.getPsw())) {
 				// 로그인 성공
 				return ResponseEntity.ok().body(Map.of("message", "로그인 성공", "user", member));
 			} else {

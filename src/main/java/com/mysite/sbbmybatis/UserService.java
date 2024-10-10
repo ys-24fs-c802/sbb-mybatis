@@ -1,6 +1,6 @@
 package com.mysite.sbbmybatis;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,10 @@ public class UserService {
 //		user1.setUpdatedAt(now);
 //		
 //		return user1;
+	}
+	
+	public User getUserPsw(String username) {
+		return userMapper.getUserPswByUsername(username);
 	}
 
 }
